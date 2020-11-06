@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+.fadeout-enter {
+  opacity: 0;
+}
+
+.fadeout-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.fadeout-exit {
+  opacity: 1;
+}
+
+.fadeout-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+@-webkit-keyframes floating {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes floating {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes leftCard {
+  0% {
+    -webkit-transform: translateX(0) rotate(360deg);
+            transform: translateX(0) rotate(360deg);
+  }
+  100% {
+    -webkit-transform: translateX(50%) rotate(345deg);
+            transform: translateX(50%) rotate(345deg);
+  }
+}
+
+@keyframes leftCard {
+  0% {
+    -webkit-transform: translateX(0) rotate(360deg);
+            transform: translateX(0) rotate(360deg);
+  }
+  100% {
+    -webkit-transform: translateX(50%) rotate(345deg);
+            transform: translateX(50%) rotate(345deg);
+  }
+}
+
+@-webkit-keyframes rightCard {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
+@keyframes rightCard {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+}
+
+@media only screen and (max-width: 550px) {
+  .navbar {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.navbar .logoPic {
+  width: 64px;
+  height: 64px;
+  margin-right: 10px;
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  cursor: pointer;
+}
+
+.navbar .logo {
+  font-size: 1em;
+  color: #eeeb2b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 6px;
+  margin-left: calc(110px);
+}
+
+@media only screen and (max-width: 550px) {
+  .navbar .logo {
+    margin-top: 13px;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .navbar .logo {
+    display: none;
+  }
+}
+
+.navbar .logo h1 {
+  margin: 15px 0 0 0;
+}
+
+.navbar .login {
+  position: absolute;
+  right: 25px;
+  top: 24px;
+}
+
+.navbar .login button {
+  display: block;
+  background: #232323;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 25px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.navbar .login button:hover {
+  background: #323232;
+}
+
+.mainLoading {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #080808;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainLoading .card {
+  height: 70px;
+  width: 50px;
+  border-radius: 10px;
+  border: 3px solid #eeeb2b;
+  background-color: #080808;
+}
+
+.mainLoading .leftCard {
+  margin-right: 15px;
+}
+
+.mainLoading .rightCard {
+  margin-left: 15px;
+}
+
+.mainLoading .floating {
+  -webkit-animation: floating 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+          animation: floating 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.mainLoading .leftCardGo {
+  -webkit-animation: leftCard 0.5s forwards;
+          animation: leftCard 0.5s forwards;
+}
+
+.mainLoading .rightCardGo {
+  -webkit-animation: rightCard 0.5s forwards;
+          animation: rightCard 0.5s forwards;
+}
+
+.main {
+  height: 100vh;
+  min-height: 550px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.main .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 550px;
+  z-index: -1;
+  background-color: #080808;
+}
+
+.main .background .bgPic {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 100vh;
+  min-height: 550px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 5;
+}
+
+@media only screen and (max-width: 1200px) {
+  .main .background .bgPic {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .main .background .bgPic {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .main .background .bgPic {
+    right: 0;
+    bottom: 0;
+    height: 40vh;
+    min-height: 0;
+    width: 45vmin;
+  }
+}
+
+.main .background .bgSmoke {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  min-height: 550px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.main .repeatText {
+  position: absolute;
+  top: 90px;
+  left: 5%;
+  color: #eeeb2b;
+  opacity: 0.05;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.main .repeatText p {
+  margin: 0;
+}
+
+.main .content {
+  position: absolute;
+  width: 475px;
+  top: 25vh;
+  left: 10%;
+  color: white;
+}
+
+@media only screen and (max-width: 700px) {
+  .main .content {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+.main .content h2 {
+  font-size: 3em;
+  margin: 0;
+}
+
+@media only screen and (max-width: 400px) {
+  .main .content h2 {
+    font-size: 2em;
+  }
+}
+
+.main .content h3 {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 400px) {
+  .main .content h3 {
+    font-size: 1em;
+  }
+}
+
+.main .content button {
+  margin-top: 25px;
+  background: #eeeb2b;
+  color: black;
+  border: 0;
+  height: 60px;
+  width: 300px;
+  font-size: 2em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+@media only screen and (max-width: 400px) {
+  .main .content button {
+    width: 100%;
+    font-size: 1.75em;
+  }
+}
+
+.main .content button:hover {
+  background: #d5d211;
+}
+
+.main .lines {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 700px) {
+  .main .lines {
+    display: none;
+  }
+}
+
+.main .lines .line {
+  width: 750px;
+  height: 20px;
+  background-color: #eeeb2b;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.main .lines .line1 {
+  margin-top: 50px;
+  margin-left: -400px;
+}
+
+.main .lines .line2 {
+  margin-top: 50px;
+  margin-left: -400px;
+}
+
+.main .lines .line3 {
+  margin-top: 50px;
+  margin-left: -400px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+button {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

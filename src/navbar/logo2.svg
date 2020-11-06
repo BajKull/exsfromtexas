@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="clip-custom_1">
+      <rect width="512" height="512"/>
+    </clipPath>
+  </defs>
+  <g id="custom_1" data-name="custom – 1" clip-path="url(#clip-custom_1)">
+    <g id="Rectangle_2" data-name="Rectangle 2" transform="translate(391.057 411.961) rotate(165)" fill="#080808" stroke="#eeeb2b" stroke-width="20">
+      <rect width="294" height="412" rx="40" stroke="none"/>
+      <rect x="10" y="10" width="274" height="392" rx="30" fill="none"/>
+    </g>
+    <text id="Ex_s" data-name="Ex&apos;s" transform="matrix(0.966, -0.259, 0.259, 0.966, 70.556, 174.801)" fill="#eeeb2b" font-size="63" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">Ex's</tspan></text>
+    <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(209 75)" fill="#080808" stroke="#eeeb2b" stroke-width="20">
+      <rect width="294" height="412" rx="40" stroke="none"/>
+      <rect x="10" y="10" width="274" height="392" rx="30" fill="none"/>
+    </g>
+    <text id="T" transform="translate(325 322)" fill="#eeeb2b" font-size="100" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">T</tspan></text>
+    <text id="T-2" data-name="T" transform="translate(254 174)" fill="#eeeb2b" font-size="63" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">T</tspan></text>
+    <text id="T-3" data-name="T" transform="matrix(1, 0, 0, -1, 419, 389)" fill="#eeeb2b" font-size="63" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">T</tspan></text>
+  </g>
+</svg>

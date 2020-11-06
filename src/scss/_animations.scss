@@ -1,0 +1,48 @@
+.fadeout-enter {
+  opacity: 0;
+}
+.fadeout-enter-active {
+  opacity: 1;
+  transition: opacity 0.35s;
+}
+.fadeout-exit {
+  opacity: 1;
+}
+.fadeout-exit-active {
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+$animationFloating: floating 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+$animationLeftCard: leftCard 0.5s forwards;
+$animationRightCard: rightCard 0.5s forwards;
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes leftCard {
+  0% {
+    transform: translateX(0) rotate(360deg);
+  }
+  100% {
+    transform: translateX(50%) rotate(345deg);
+  }
+}
+
+@keyframes rightCard {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
