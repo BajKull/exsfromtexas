@@ -1,0 +1,173 @@
+.room {
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(
+    circle,
+    rgba(35, 35, 35, 1) 0%,
+    rgba(8, 8, 8, 1) 100%
+  );
+  margin-top: -60px;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  position: relative;
+
+  min-height: 675px;
+
+  @include breakpoint(1350px) {
+    min-height: 600px;
+  }
+
+  @include breakpoint(750px) {
+    align-items: baseline;
+    min-height: 0;
+  }
+
+  .table {
+    position: relative;
+    width: 75%;
+    // height: 450px;
+    top: clamp(125px, 25vh, 250px);
+    height: 50vh;
+    min-height: 300px;
+    background-color: rgb(34, 102, 175);
+    border-radius: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+      border: 2px solid $mainColor;
+      height: 70px;
+      width: 50px;
+      border-radius: 5px;
+      background-color: rgb(8, 8, 8);
+      margin: 0 5px;
+    }
+
+    @include breakpoint(750px) {
+      background-color: rgba(0, 0, 0, 0);
+      position: absolute;
+      bottom: 120px;
+      height: auto;
+      min-height: 0;
+    }
+  }
+
+  .userPanel {
+    position: absolute;
+    width: 600px;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      position: relative;
+    }
+
+    .folded {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: darken($redColor, 35);
+      border-radius: 5px;
+
+      h1 {
+        color: $redColor;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+    }
+
+    @include breakpoint(650px) {
+      width: 90%;
+    }
+
+    .stakes {
+      display: flex;
+      margin-bottom: 2px;
+
+      button {
+        width: 96px;
+        height: 25px;
+        background-color: rgb(60, 60, 60);
+        color: rgb(120, 120, 120);
+        border: 0;
+        margin: 3px 2px;
+        border-radius: 3px;
+        transition: 0.2s;
+
+        @include breakpoint(650px) {
+          width: calc(16.5% - 3px);
+          font-size: 0.55em;
+        }
+        &:hover {
+          background: lighten(rgb(60, 60, 60), 5);
+        }
+      }
+
+      input {
+        width: 196px;
+        height: 25px;
+        padding: 0;
+        border: 0;
+        border-radius: 3px;
+        margin: 3px 2px;
+        text-align: center;
+        background-color: rgb(60, 60, 60);
+        color: rgb(120, 120, 120);
+
+        @include breakpoint(650px) {
+          width: calc(33% - 2px);
+          font-size: 0.55em;
+        }
+
+        &:focus {
+          outline: none;
+          color: white;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+
+      .red {
+        background: $redColor;
+        &:hover {
+          background: lighten($redColor, 10);
+        }
+      }
+      .yellow {
+        background: $yellowColor;
+        &:hover {
+          background: lighten($yellowColor, 10);
+        }
+      }
+      .green {
+        background: $greenColor;
+        &:hover {
+          background: lighten($greenColor, 10);
+        }
+      }
+
+      button {
+        width: 200px;
+        height: 50px;
+        margin: 0 2px;
+        border: 0;
+        border-radius: 5px;
+        font-weight: 800;
+        font-size: 20px;
+        text-transform: uppercase;
+        transition: 0.2s;
+        @include breakpoint(650px) {
+          width: calc(33.3% - 2px);
+        }
+      }
+    }
+  }
+}

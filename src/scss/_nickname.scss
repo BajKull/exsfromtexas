@@ -1,0 +1,65 @@
+.nickScreen {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+
+  .content {
+    width: 20%;
+    min-width: 250px;
+    height: 20vh;
+    min-height: 200px;
+    margin: 15vh auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: $bgColor;
+    border-radius: 5px;
+
+    @include breakpoint(400px) {
+      width: calc(90% - 50px);
+      min-width: 0;
+    }
+
+    label {
+      color: white;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    input {
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: $mainColor;
+      color: black;
+      border: 0;
+      height: 35px;
+      width: 200px;
+      margin: auto auto 0 auto;
+      font-size: 1.25em;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: darken($mainColor, 10);
+      }
+    }
+
+    .error {
+      color: $redColor;
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    .errorColor {
+      color: $redColor;
+    }
+  }
+}

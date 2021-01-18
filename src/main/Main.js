@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import Bg from "./bg.png";
-import Smoke from "./smoke2.mov";
+import Smoke from "./smoke.mov";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setRoomcode } from "../redux/actions/connectionActions";
 
 export default function Main() {
   const [showMenu1, setShowMenu1] = useState(true);
   const [showMenu2, setShowMenu2] = useState(false);
+  const [showJoin, setShowJoin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
+  const endpoint = useSelector((state) => state.connection.endpoint);
+  const dispatch = useDispatch();
 
   const vidRef = useRef(null);
   const leftCard = useRef(null);
@@ -22,9 +29,17 @@ export default function Main() {
     }
   };
 
+  const changeJoinMenu = () => {
+    if (showJoin) {
+      setShowMenu2(true);
+      setShowJoin(false);
+    } else {
+      setShowMenu2(false);
+      setShowJoin(true);
+    }
+  };
+
   const imgOnLoad = () => {
-    // leftCard.current.classList.remove("floating");
-    // rightCard.current.classList.remove("floating");
     leftCard.current.classList.add("leftCardGo");
     rightCard.current.classList.add("rightCardGo");
     setTimeout(() => {
@@ -32,8 +47,18 @@ export default function Main() {
     }, 500);
   };
 
+  const createRoom = () => {
+    fetch(`${endpoint}/api/createRoom`, {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((code) => {
+        dispatch(setRoomcode(code.id));
+        history.push(`/room/${code.id}`);
+      });
+  };
+
   useEffect(() => {
-    // vidRef.current.playbackRate = 0.9;
     if (!loading) vidRef.current.play();
   }, [loading]);
 
@@ -52,7 +77,6 @@ export default function Main() {
         </div>
       </CSSTransition>
       <div>
-        {" "}
         <CSSTransition
           timeout={350}
           in={showMenu1}
@@ -76,8 +100,21 @@ export default function Main() {
         >
           <div className="content">
             <h2>Texas Hold'em online</h2>
-            <button>Stwórz grę</button>
-            <button>Dołącz</button>
+
+            <button onClick={() => createRoom()}>Stwórz grę</button>
+
+            <button onClick={changeJoinMenu}>Dołącz</button>
+          </div>
+        </CSSTransition>
+        <CSSTransition
+          timeout={250}
+          in={showJoin}
+          unmountOnExit
+          classNames="fadeout"
+        >
+          <div className="content">
+            <h2>Kod pokoju</h2>
+            <button onClick={changeJoinMenu}>Cofnij</button>
           </div>
         </CSSTransition>
         <div className="background">

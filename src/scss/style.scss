@@ -2,9 +2,13 @@
 @import "fonts";
 @import "mixins";
 @import "animations";
+@import "input";
 @import "navbar";
 @import "loading";
 @import "main";
+@import "room";
+@import "players";
+@import "nickname";
 
 body {
   margin: 0;
@@ -16,4 +20,9 @@ button {
   font-family: $mainFont;
   font-weight: 700;
   cursor: pointer;
+}
+
+input {
+  font-family: $mainFont;
+  font-weight: 700;
 }

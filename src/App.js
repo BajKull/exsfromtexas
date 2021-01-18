@@ -1,13 +1,18 @@
 import "./scss/style.css";
 import Navbar from "./navbar/Navbar";
 import Main from "./main/Main";
+import Room from "./room/Room";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-      <Main />
-    </div>
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/room" component={Room} />
+      </Switch>
+    </Router>
   );
 }
 
