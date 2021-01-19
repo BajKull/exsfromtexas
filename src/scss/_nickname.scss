@@ -8,11 +8,20 @@
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
 
+  .avatar {
+    img {
+      display: block;
+      height: 128px;
+      width: 128px;
+      margin: 0 auto 15px auto;
+    }
+  }
+
   .content {
     width: 20%;
     min-width: 250px;
-    height: 20vh;
-    min-height: 200px;
+    height: 40vh;
+    min-height: 400px;
     margin: 15vh auto 0 auto;
     display: flex;
     flex-direction: column;
@@ -48,6 +57,21 @@
 
       &:hover {
         background: darken($mainColor, 10);
+      }
+    }
+
+    .buttons {
+      display: flex;
+      width: 100%;
+      margin-bottom: 25px;
+
+      button {
+        width: 50px;
+      }
+
+      .right {
+        display: block;
+        margin-left: auto;
       }
     }
 

@@ -9,8 +9,9 @@ export default function UserPanel() {
   const player = useSelector((state) =>
     state.players.find((p) => p.id === userId)
   );
-  const roomStake = useSelector((state) => state.table.coinsInRound);
+  const table = useSelector((state) => state.table);
   const panel = useRef(null);
+  const readyBtn = useRef(null);
 
   const sendBet = (amount) => {
     fetch(`${endpoint}/api/room/${roomcode}/player/${userId}`, {
@@ -33,9 +34,11 @@ export default function UserPanel() {
   };
 
   const updateStake = (amount) => {
-    if (amount === "half") setStake(roomStake / 2);
-    if (amount === "third") setStake((roomStake / 4) * 3);
-    if (amount === "pot") setStake(roomStake);
+    if (amount === "half")
+      setStake(parseInt(table.coinsInRound / 2 + player.bet));
+    if (amount === "third")
+      setStake(parseInt((table.coinsInRound / 4) * 3 + player.bet));
+    if (amount === "pot") setStake(table.coinsInRound + player.bet);
     if (amount === "all") setStake(player.budget);
   };
 
@@ -43,17 +46,45 @@ export default function UserPanel() {
     if (e.target.value > player.budget) setStake(player.budget);
     else if (e.target.value < 0) setStake(0);
     else if (isNaN(e.target.value)) return;
+    else if (e.target.value === "") setStake(0);
     else setStake(parseInt(e.target.value));
+  };
+
+  const userReady = () => {
+    fetch(`${endpoint}/api/room/${roomcode}/player/${userId}/ready`, {
+      method: "PUT",
+    });
+    readyBtn.current.disabled = true;
+    setTimeout(() => {
+      if (table.status === "lobby") readyBtn.current.disabled = false;
+    }, 1000);
   };
 
   return (
     <div className="userPanel" ref={panel}>
       <div className="content">
-        {/* {player && player.pass && (
+        {table.coinsInRound !== 0 && player && player.pass && (
           <div className="folded">
             <h1>Folded</h1>
           </div>
-        )} */}
+        )}
+        {table.status === "lobby" && (
+          <>
+            {player && player.ready ? (
+              <button
+                className="ready notready"
+                ref={readyBtn}
+                onClick={userReady}
+              >
+                Ready
+              </button>
+            ) : (
+              <button className="ready" ref={readyBtn} onClick={userReady}>
+                Unready
+              </button>
+            )}
+          </>
+        )}
         <div className="stakes">
           <button onClick={() => updateStake("half")}>1/2 Pot</button>
           <button onClick={() => updateStake("third")}>3/4 Pot</button>

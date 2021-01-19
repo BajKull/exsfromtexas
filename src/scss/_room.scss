@@ -82,6 +82,25 @@
       }
     }
 
+    .ready {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: darken($redColor, 35);
+      border-radius: 5px;
+      border: 0;
+      color: $redColor;
+      font-size: 36px;
+    }
+
+    .notready {
+      background-color: darken($greenColor, 30);
+      color: $greenColor;
+    }
+
     @include breakpoint(650px) {
       width: 90%;
     }

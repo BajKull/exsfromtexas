@@ -13,8 +13,13 @@
   position: absolute;
 }
 
+.transparent {
+  opacity: 0.65;
+}
+
 .blurred {
-  opacity: 0.85;
+  opacity: 0.95;
+  filter: blur(2px);
 }
 
 .playerContainer:nth-of-type(1) {
@@ -299,6 +304,10 @@
   }
 }
 
+.active {
+  background: rgb(10, 52, 71);
+}
+
 .player {
   display: flex;
   align-items: center;
@@ -440,6 +449,7 @@
     .action {
       font-weight: 700;
       text-transform: uppercase;
+      font-size: 0.75em;
     }
   }
 }

@@ -11,6 +11,7 @@ export default function Main() {
   const [showMenu2, setShowMenu2] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [code, setCode] = useState("");
   const history = useHistory();
   const endpoint = useSelector((state) => state.connection.endpoint);
   const dispatch = useDispatch();
@@ -53,9 +54,14 @@ export default function Main() {
     })
       .then((res) => res.json())
       .then((code) => {
+        console.log(code);
         dispatch(setRoomcode(code.id));
         history.push(`/room/${code.id}`);
       });
+  };
+
+  const typeCode = (e) => {
+    if (/^[a-zA-Z]{0,4}$/.test(e.target.value)) setCode(e.target.value);
   };
 
   useEffect(() => {
@@ -114,6 +120,8 @@ export default function Main() {
         >
           <div className="content">
             <h2>Kod pokoju</h2>
+            <input value={code} onChange={typeCode} className="globalInput" />
+            <button onClick={changeJoinMenu}>Dołącz</button>
             <button onClick={changeJoinMenu}>Cofnij</button>
           </div>
         </CSSTransition>

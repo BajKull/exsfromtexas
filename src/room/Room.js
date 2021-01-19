@@ -4,20 +4,28 @@ import UserPanel from "./UserPanel";
 import NicknameScreen from "./NicknameScreen";
 import SockJS from "sockjs-client";
 import * as Stomp from "@stomp/stompjs";
-import { Route, useLocation, useRouteMatch } from "react-router-dom";
-import { setId } from "../redux/actions/userActions";
+import {
+  Route,
+  useLocation,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
+import { resetUser, setId } from "../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlayers } from "../redux/actions/playerActions";
+import { resetPlayers, setPlayers } from "../redux/actions/playerActions";
 import { setRoomcode } from "../redux/actions/connectionActions";
 import { setTable } from "../redux/actions/tableActions";
+import { waitFor } from "@testing-library/react";
 
 export default function Room() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const location = useLocation();
   const endpoint = useSelector((state) => state.connection.endpoint);
   const roomcode = useSelector((state) => state.connection.roomcode);
   const userId = useSelector((state) => state.user.id);
   const nickname = useSelector((state) => state.user.name);
+  const avId = useSelector((state) => state.user.avatar);
 
   useEffect(() => {
     const code = location.pathname.split("/").pop();
@@ -29,20 +37,6 @@ export default function Room() {
     const socket = SockJS(endpoint + "/room/" + roomcode);
     const stomp = Stomp.Stomp;
     const client = stomp.over(socket);
-    socket.onclose = () => {};
-
-    client.connect({}, () => {
-      client.subscribe(`/topic/room/${roomcode}`, processMsg);
-      fetch(`${endpoint}/api/room/${roomcode}/player`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nickname: nickname }),
-      })
-        .then((res) => res.json())
-        .then((res) => dispatch(setId(res.id)));
-    });
 
     const processMsg = (msg) => {
       const data = JSON.parse(msg.body);
@@ -50,7 +44,33 @@ export default function Room() {
       dispatch(setPlayers(data.players));
       dispatch(setTable(data.table));
     };
-  }, [dispatch, endpoint, roomcode, nickname]);
+
+    client.connect({}, () => {
+      waitFor(() =>
+        client.subscribe(`/topic/room/${roomcode}`, processMsg)
+      ).then(() => {
+        fetch(`${endpoint}/api/room/${roomcode}/player`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nickname: nickname, avatar: avId }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            // dodac 404
+            if (res.status === 404) history.push("/");
+            dispatch(setId(res.id));
+          });
+      });
+    });
+
+    return () => {
+      if (roomcode !== null) {
+        client.disconnect();
+      }
+    };
+  }, [dispatch, endpoint, roomcode, nickname, avId, history]);
 
   useEffect(() => {
     if (nickname === "unknown") return;
@@ -62,11 +82,20 @@ export default function Room() {
     };
   }, [endpoint, roomcode, userId, nickname]);
 
-  // const startGame = () => {
-  //   fetch(`${endpoint}api/room/${roomcode}/start`, {
-  //     method: "GET",
-  //   });
-  // };
+  useEffect(() => {
+    return () => {
+      if (userId !== 0 && roomcode !== null) {
+        navigator.sendBeacon(
+          `${endpoint}/api/room/${roomcode}/player/${userId}/delete`,
+          {}
+        );
+        dispatch(setRoomcode(null));
+        dispatch(resetPlayers());
+        dispatch(setTable({}));
+        dispatch(resetUser());
+      }
+    };
+  }, [dispatch, endpoint, roomcode, userId]);
 
   return (
     <Route
@@ -76,7 +105,6 @@ export default function Room() {
           {nickname === "unknown" && <NicknameScreen />}
           <Table />
           <UserPanel />
-          {/* <button onClick={() => startGame()}></button> */}
         </div>
       )}
     />

@@ -1,6 +1,6 @@
 const config = {
   endpoint: "https://tranquil-tundra-62034.herokuapp.com",
-  roomcode: "AAAA",
+  roomcode: null,
 };
 
 const connection = (state = config, action) => {

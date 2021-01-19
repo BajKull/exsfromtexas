@@ -11,3 +11,16 @@ export const setId = (id) => {
     payload: id,
   };
 };
+
+export const changeAvatar = (how) => {
+  return {
+    type: "CHANGE_AVATAR",
+    payload: how,
+  };
+};
+
+export const resetUser = () => {
+  return {
+    type: "RESET_USER",
+  };
+};

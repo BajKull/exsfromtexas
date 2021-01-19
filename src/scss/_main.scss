@@ -97,6 +97,17 @@
       }
     }
 
+    input {
+      margin: 5px 0;
+      width: 280px;
+      text-align: center;
+      text-transform: uppercase;
+
+      @include breakpoint(400px) {
+        width: calc(100% - 20px);
+      }
+    }
+
     button {
       margin-top: 25px;
       background: $mainColor;

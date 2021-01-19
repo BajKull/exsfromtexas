@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import Avatar from "./avatars/Avatar";
 import { useDispatch } from "react-redux";
 import { setName } from "../redux/actions/userActions";
+import ChangeAvatar from "./avatars/ChangeAvatar";
 
 export default function NicknameScreen() {
   const [nick, setNick] = useState("");
@@ -36,6 +38,8 @@ export default function NicknameScreen() {
   return (
     <div className="nickScreen">
       <div className="content">
+        <Avatar />
+        <ChangeAvatar />
         <label>Twoja nazwa</label>
         <input
           className="globalInput"

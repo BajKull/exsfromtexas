@@ -7,8 +7,8 @@ import allReducer from "./redux/reducers/index";
 import reportWebVitals from "./reportWebVitals";
 
 const store = createStore(
-  allReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+  allReducer
+  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
 );
 
 ReactDOM.render(

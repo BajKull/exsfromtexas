@@ -349,6 +349,19 @@
   }
 }
 
+.main .content input {
+  margin: 5px 0;
+  width: 280px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 400px) {
+  .main .content input {
+    width: calc(100% - 20px);
+  }
+}
+
 .main .content button {
   margin-top: 25px;
   background: #eeeb2b;
@@ -522,6 +535,31 @@
   font-weight: 800;
 }
 
+.room .userPanel .ready {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #651515;
+  border-radius: 5px;
+  border: 0;
+  color: #db5151;
+  font-size: 36px;
+}
+
+.room .userPanel .notready {
+  background-color: #16310c;
+  color: #4dac2a;
+}
+
 @media only screen and (max-width: 650px) {
   .room .userPanel {
     width: 90%;
@@ -646,8 +684,14 @@
   position: absolute;
 }
 
+.transparent {
+  opacity: 0.65;
+}
+
 .blurred {
-  opacity: 0.85;
+  opacity: 0.95;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
 }
 
 .playerContainer:nth-of-type(1) {
@@ -1038,6 +1082,10 @@
   }
 }
 
+.active {
+  background: #0a3447;
+}
+
 .player {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1232,6 +1280,7 @@
 .player .info .action {
   font-weight: 700;
   text-transform: uppercase;
+  font-size: 0.75em;
 }
 
 .nickScreen {
@@ -1246,11 +1295,18 @@
           backdrop-filter: blur(10px);
 }
 
+.nickScreen .avatar img {
+  display: block;
+  height: 128px;
+  width: 128px;
+  margin: 0 auto 15px auto;
+}
+
 .nickScreen .content {
   width: 20%;
   min-width: 250px;
-  height: 20vh;
-  min-height: 200px;
+  height: 40vh;
+  min-height: 400px;
   margin: 15vh auto 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1296,6 +1352,23 @@
 
 .nickScreen .content button:hover {
   background: #d5d211;
+}
+
+.nickScreen .content .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.nickScreen .content .buttons button {
+  width: 50px;
+}
+
+.nickScreen .content .buttons .right {
+  display: block;
+  margin-left: auto;
 }
 
 .nickScreen .content .error {
