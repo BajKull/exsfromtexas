@@ -29,9 +29,25 @@
   transition-delay: 0.5s;
 }
 
+.comeFromBottom-enter {
+  transform: translateY(100%);
+}
+.comeFromBottom-enter-active {
+  transform: translateY(0);
+  transition: 0.35s;
+}
+.comeFromBottom-exit {
+  transform: translateY(0);
+}
+.comeFromBottom-exit-active {
+  transform: translateY(100%);
+  transition: 0.35s;
+}
+
 $animationFloating: floating 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 $animationLeftCard: leftCard 0.5s forwards;
 $animationRightCard: rightCard 0.5s forwards;
+$animationPulsing: pulsing 4s infinite cubic-bezier(0.12, 0, 0.39, 0);
 
 @keyframes floating {
   0% {
@@ -42,6 +58,18 @@ $animationRightCard: rightCard 0.5s forwards;
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes pulsing {
+  0% {
+    background-color: darken($yellowColor, 30);
+  }
+  50% {
+    background-color: darken($yellowColor, 35);
+  }
+  100% {
+    background-color: darken($yellowColor, 30);
   }
 }
 

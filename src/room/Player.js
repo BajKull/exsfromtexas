@@ -41,6 +41,7 @@ export default function Player({ id }) {
   return (
     <div className="playerContainer">
       <div className="player" ref={playerRef}>
+        {player.active && <div className="turnBorder" />}
         <Avatar avatar={player.avatar} pass={player.pass} />
 
         <div className="info">

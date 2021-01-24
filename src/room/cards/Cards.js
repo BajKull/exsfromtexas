@@ -9,6 +9,7 @@ export default function Cards({ player }) {
 
   useEffect(() => {
     if (user.id === player.id || winner) setHidden(false);
+    else setHidden(true);
   }, [player.id, user.id, winner]);
 
   return (

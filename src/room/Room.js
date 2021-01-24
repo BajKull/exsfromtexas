@@ -3,6 +3,7 @@ import Table from "./Table";
 import UserPanel from "./UserPanel";
 import NicknameScreen from "./NicknameScreen";
 import SockJS from "sockjs-client";
+import Winner from "./Winner";
 import * as Stomp from "@stomp/stompjs";
 import { Route, useLocation, useHistory } from "react-router-dom";
 import { resetUser, setId } from "../redux/actions/userActions";
@@ -10,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetPlayers, setPlayers } from "../redux/actions/playerActions";
 import { setRoomcode } from "../redux/actions/connectionActions";
 import { setTable } from "../redux/actions/tableActions";
+import { setWinner, resetWinner } from "../redux/actions/winnerActions";
 import Loading from "../loading/Loading";
 
 export default function Room() {
@@ -22,6 +24,7 @@ export default function Room() {
   const userId = useSelector((state) => state.user.id);
   const nickname = useSelector((state) => state.user.name);
   const avId = useSelector((state) => state.user.avatar);
+  const winner = useSelector((state) => state.winner);
 
   useEffect(() => {
     const code = location.pathname.split("/").pop();
@@ -42,7 +45,9 @@ export default function Room() {
         dispatch(setPlayers(data.players));
         dispatch(setTable(data.table));
         setLoading(false);
+        dispatch(resetWinner());
       } else if (data.messageType === "winner") {
+        dispatch(setWinner(data.winners[0]));
       }
     };
 
@@ -106,6 +111,7 @@ export default function Room() {
           {nickname === "unknown" && <NicknameScreen />}
           <Table />
           <UserPanel />
+          <Winner winner={winner} />
         </div>
       )}
     />
