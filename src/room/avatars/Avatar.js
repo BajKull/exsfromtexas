@@ -38,14 +38,19 @@ const avatars = [
   Spider,
 ];
 
-export default function Avatar({ avatar }) {
+export default function Avatar({ avatar, pass }) {
   const avaImg = useRef(null);
   const id = useSelector((state) => state.user.avatar);
 
   useEffect(() => {
-    if (avatar) avaImg.current.src = avatars[avatar];
+    if (avatar !== undefined) avaImg.current.src = avatars[avatar];
     else avaImg.current.src = avatars[id];
   }, [id, avatar]);
+
+  useEffect(() => {
+    if (pass) avaImg.current.classList.add("blurred");
+    else avaImg.current.classList.remove("blurred");
+  }, [pass]);
 
   return (
     <div className="avatar">

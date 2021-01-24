@@ -1,0 +1,52 @@
+.card {
+  height: 70px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: rgb(8, 8, 8);
+  margin: 0 5px;
+  position: relative;
+
+  p {
+    font-weight: 800;
+    font-size: 1.25em;
+    margin: -2px auto 0 3px;
+  }
+
+  .cardImg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+  }
+
+  .red {
+    fill: $redColor;
+    color: $redColor;
+  }
+
+  .green {
+    fill: $greenColor;
+    color: $greenColor;
+  }
+
+  .blue {
+    fill: $blueColor;
+    color: $blueColor;
+  }
+
+  .black {
+    fill: black;
+    color: black;
+  }
+}
+
+.covered {
+  border: 2px solid $mainColor;
+}
+
+.uncovered {
+  background-color: white;
+  border: 2px solid transparent;
+}

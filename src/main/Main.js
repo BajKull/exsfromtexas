@@ -5,6 +5,7 @@ import Smoke from "./smoke.mov";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setRoomcode } from "../redux/actions/connectionActions";
+import Loading from "../loading/Loading";
 
 export default function Main() {
   const [showMenu1, setShowMenu1] = useState(true);
@@ -17,8 +18,6 @@ export default function Main() {
   const dispatch = useDispatch();
 
   const vidRef = useRef(null);
-  const leftCard = useRef(null);
-  const rightCard = useRef(null);
 
   const changeMenu = () => {
     if (showMenu1) {
@@ -41,11 +40,7 @@ export default function Main() {
   };
 
   const imgOnLoad = () => {
-    leftCard.current.classList.add("leftCardGo");
-    rightCard.current.classList.add("rightCardGo");
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    setLoading(false);
   };
 
   const createRoom = () => {
@@ -54,14 +49,18 @@ export default function Main() {
     })
       .then((res) => res.json())
       .then((code) => {
-        console.log(code);
         dispatch(setRoomcode(code.id));
         history.push(`/room/${code.id}`);
       });
   };
 
+  const joinRoom = () => {
+    history.push(`/room/${code}`);
+  };
+
   const typeCode = (e) => {
-    if (/^[a-zA-Z]{0,4}$/.test(e.target.value)) setCode(e.target.value);
+    if (/^[a-zA-Z]{0,4}$/.test(e.target.value))
+      setCode(e.target.value.toUpperCase());
   };
 
   useEffect(() => {
@@ -70,18 +69,7 @@ export default function Main() {
 
   return (
     <div className="main">
-      <CSSTransition
-        className="mainLoading"
-        in={loading}
-        timeout={250}
-        unmountOnExit
-        classNames="fadeout"
-      >
-        <div>
-          <div className="card leftCard floating" ref={leftCard}></div>
-          <div className="card rightCard floating" ref={rightCard}></div>
-        </div>
-      </CSSTransition>
+      <Loading loading={loading} />
       <div>
         <CSSTransition
           timeout={350}
@@ -121,7 +109,7 @@ export default function Main() {
           <div className="content">
             <h2>Kod pokoju</h2>
             <input value={code} onChange={typeCode} className="globalInput" />
-            <button onClick={changeJoinMenu}>Dołącz</button>
+            <button onClick={joinRoom}>Dołącz</button>
             <button onClick={changeJoinMenu}>Cofnij</button>
           </div>
         </CSSTransition>

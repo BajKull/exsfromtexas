@@ -1,23 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import UserPanel from "./UserPanel";
 import NicknameScreen from "./NicknameScreen";
 import SockJS from "sockjs-client";
 import * as Stomp from "@stomp/stompjs";
-import {
-  Route,
-  useLocation,
-  useRouteMatch,
-  useHistory,
-} from "react-router-dom";
+import { Route, useLocation, useHistory } from "react-router-dom";
 import { resetUser, setId } from "../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPlayers, setPlayers } from "../redux/actions/playerActions";
 import { setRoomcode } from "../redux/actions/connectionActions";
 import { setTable } from "../redux/actions/tableActions";
-import { waitFor } from "@testing-library/react";
+import Loading from "../loading/Loading";
 
 export default function Room() {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -34,6 +30,7 @@ export default function Room() {
 
   useEffect(() => {
     if (nickname === "unknown") return;
+    setLoading(true);
     const socket = SockJS(endpoint + "/room/" + roomcode);
     const stomp = Stomp.Stomp;
     const client = stomp.over(socket);
@@ -41,14 +38,17 @@ export default function Room() {
     const processMsg = (msg) => {
       const data = JSON.parse(msg.body);
       console.log(data);
-      dispatch(setPlayers(data.players));
-      dispatch(setTable(data.table));
+      if (data.messageType === "roomStatus") {
+        dispatch(setPlayers(data.players));
+        dispatch(setTable(data.table));
+        setLoading(false);
+      } else if (data.messageType === "winner") {
+      }
     };
 
     client.connect({}, () => {
-      waitFor(() =>
-        client.subscribe(`/topic/room/${roomcode}`, processMsg)
-      ).then(() => {
+      client.subscribe(`/topic/room/${roomcode}`, processMsg);
+      setTimeout(() => {
         fetch(`${endpoint}/api/room/${roomcode}/player`, {
           method: "POST",
           headers: {
@@ -62,7 +62,7 @@ export default function Room() {
             if (res.status === 404) history.push("/");
             dispatch(setId(res.id));
           });
-      });
+      }, 500);
     });
 
     return () => {
@@ -99,9 +99,10 @@ export default function Room() {
 
   return (
     <Route
-      path={`${useRouteMatch().path}/:id`}
+      path={`/room/:id`}
       render={() => (
         <div className="room">
+          <Loading loading={loading} />
           {nickname === "unknown" && <NicknameScreen />}
           <Table />
           <UserPanel />

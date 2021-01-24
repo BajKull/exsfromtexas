@@ -6,10 +6,12 @@ import { Provider } from "react-redux";
 import allReducer from "./redux/reducers/index";
 import reportWebVitals from "./reportWebVitals";
 
-const store = createStore(
-  allReducer
-  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
-);
+const store = createStore(allReducer);
+
+// const store = createStore(
+//   allReducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+// );
 
 ReactDOM.render(
   <Provider store={store}>

@@ -13,24 +13,30 @@ export default function UserPanel() {
   const panel = useRef(null);
   const readyBtn = useRef(null);
 
-  const sendBet = (amount) => {
+  const sendCall = () => {
     fetch(`${endpoint}/api/room/${roomcode}/player/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ bet: amount }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+      body: JSON.stringify({ bet: table.maxBet - player.bet }),
+    });
+  };
+
+  const sendBet = () => {
+    fetch(`${endpoint}/api/room/${roomcode}/player/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bet: stake }),
+    });
   };
 
   const sendFold = () => {
     fetch(`${endpoint}/api/room/${roomcode}/player/${userId}/pass`, {
       method: "PUT",
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    });
   };
 
   const updateStake = (amount) => {
@@ -56,14 +62,14 @@ export default function UserPanel() {
     });
     readyBtn.current.disabled = true;
     setTimeout(() => {
-      if (table.status === "lobby") readyBtn.current.disabled = false;
-    }, 1000);
+      readyBtn.current.disabled = false;
+    }, 100);
   };
 
   return (
     <div className="userPanel" ref={panel}>
       <div className="content">
-        {table.coinsInRound !== 0 && player && player.pass && (
+        {table.status === "game" && player && player.pass && (
           <div className="folded">
             <h1>Folded</h1>
           </div>
@@ -85,6 +91,9 @@ export default function UserPanel() {
             )}
           </>
         )}
+        {table.status === "game" && player.active === false && (
+          <div className="waiting"></div>
+        )}
         <div className="stakes">
           <button onClick={() => updateStake("half")}>1/2 Pot</button>
           <button onClick={() => updateStake("third")}>3/4 Pot</button>
@@ -96,7 +105,7 @@ export default function UserPanel() {
           <button className="red" onClick={() => sendFold()}>
             Fold
           </button>
-          <button className="yellow" onClick={() => sendBet()}>
+          <button className="yellow" onClick={() => sendCall()}>
             Call
           </button>
           <button className="green" onClick={() => sendBet()}>

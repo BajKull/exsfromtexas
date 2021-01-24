@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Cards from "./Cards";
+import Cards from "./cards/Cards";
 import { ReactComponent as Chip } from "./chip.svg";
 import { useSelector } from "react-redux";
 import Avatar from "./avatars/Avatar";
@@ -13,31 +13,40 @@ export default function Player({ id }) {
   useEffect(() => {
     if (player.pass) {
       playerRef.current.classList.add("transparent");
-      document.getElementsByClassName("avatar")[0].classList.add("blurred");
     } else {
       playerRef.current.classList.remove("transparent");
-      document.getElementsByClassName("avatar")[0].classList.remove("blurred");
     }
+
+    if (player.ready) lastActionRef.current.classList.replace("fold", "raise");
+    else lastActionRef.current.classList.replace("raise", "fold");
 
     if (player.active) playerRef.current.classList.add("turn");
     else playerRef.current.classList.remove("turn");
 
-    if (player.lastAction === "fold")
-      lastActionRef.current.classList.replace(/call|raise/, "fold");
-    else if (player.lastAction === "call")
-      lastActionRef.current.classList.replace(/fold|raise/, "call");
-    else lastActionRef.current.classList.replace(/fold|call/, "raise");
-  }, [player.active, player.lastAction, player.pass]);
+    if (player.lastAction === "fold") {
+      lastActionRef.current.classList.remove("raise");
+      lastActionRef.current.classList.remove("call");
+      lastActionRef.current.classList.add("fold");
+    } else if (player.lastAction === "call") {
+      lastActionRef.current.classList.remove("raise");
+      lastActionRef.current.classList.remove("fold");
+      lastActionRef.current.classList.add("call");
+    } else if (player.lastAction === "raise") {
+      lastActionRef.current.classList.remove("call");
+      lastActionRef.current.classList.remove("fold");
+      lastActionRef.current.classList.add("raise");
+    }
+  }, [player]);
 
   return (
-    <div className="playerContainer" ref={playerRef}>
-      <div className="player">
-        <Avatar avatar={player.avatar} />
+    <div className="playerContainer">
+      <div className="player" ref={playerRef}>
+        <Avatar avatar={player.avatar} pass={player.pass} />
 
         <div className="info">
           <p className="nick">{player.nickname}</p>
           <p className="tokens">{player.budget}</p>
-          <p className="action green" ref={lastActionRef}>
+          <p className="action fold" ref={lastActionRef}>
             {gameStarted === "game" ? (
               <>{player.lastAction || "WAITING"}</>
             ) : (
@@ -45,7 +54,7 @@ export default function Player({ id }) {
             )}
           </p>
         </div>
-        <Cards />
+        <Cards player={player} />
         {player.bet !== 0 && (
           <div className="userTokens">
             <Chip className="chipImg" />

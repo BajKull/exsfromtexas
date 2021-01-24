@@ -13,7 +13,7 @@ const user = (state = defaultUser, action) => {
     case "CHANGE_AVATAR": {
       return {
         ...state,
-        avatar: (state.avatar + (action.payload % 16) + 16) % 16,
+        avatar: (state.avatar + (action.payload % 17) + 17) % 17,
       };
     }
     case "RESET_USER":

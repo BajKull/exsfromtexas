@@ -19,6 +19,28 @@
   transition: opacity 0.35s;
 }
 
+.fadeoutLoading-enter {
+  opacity: 0;
+}
+
+.fadeoutLoading-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.fadeoutLoading-exit {
+  opacity: 1;
+}
+
+.fadeoutLoading-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
 @-webkit-keyframes floating {
   0% {
     -webkit-transform: translateY(0);
@@ -91,6 +113,59 @@
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
+}
+
+.card {
+  height: 70px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: #080808;
+  margin: 0 5px;
+  position: relative;
+}
+
+.card p {
+  font-weight: 800;
+  font-size: 1.25em;
+  margin: -2px auto 0 3px;
+}
+
+.card .cardImg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+.card .red {
+  fill: #db5151;
+  color: #db5151;
+}
+
+.card .green {
+  fill: #4dac2a;
+  color: #4dac2a;
+}
+
+.card .blue {
+  fill: #253788;
+  color: #253788;
+}
+
+.card .black {
+  fill: black;
+  color: black;
+}
+
+.covered {
+  border: 2px solid #eeeb2b;
+}
+
+.uncovered {
+  background-color: white;
+  border: 2px solid transparent;
 }
 
 .globalInput {
@@ -468,6 +543,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -476,13 +555,72 @@
           align-items: center;
 }
 
-.room .table .card {
-  border: 2px solid #eeeb2b;
-  height: 70px;
-  width: 50px;
-  border-radius: 5px;
-  background-color: #080808;
-  margin: 0 5px;
+.room .table .tableCards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media only screen and (max-width: 750px) {
+  .room .table .tableCards .card {
+    width: 35px;
+    height: 49px;
+  }
+}
+
+.room .table .tableCards .card p {
+  font-size: 1.65em;
+}
+
+@media only screen and (max-width: 750px) {
+  .room .table .tableCards .card p {
+    font-size: 1.25em;
+  }
+}
+
+.room .table .tableCards .card .cardImg {
+  width: 32px;
+  height: 32px;
+}
+
+@media only screen and (max-width: 750px) {
+  .room .table .tableCards .card .cardImg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.room .table .tableChips {
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: -100px;
+  margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+  .room .table .tableChips {
+    margin-top: -75px;
+    margin-bottom: 0;
+  }
+}
+
+.room .table .tableChips p {
+  margin-left: 10px;
+}
+
+.room .table .tableChips .chipImg {
+  width: 32px;
+  height: 32px;
 }
 
 @media only screen and (max-width: 750px) {
@@ -510,6 +648,16 @@
 
 .room .userPanel .content {
   position: relative;
+}
+
+.room .userPanel .waiting {
+  background-color: rgba(50, 50, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
 }
 
 .room .userPanel .folded {
@@ -674,7 +822,6 @@
     position: relative;
     width: 100%;
     margin-left: auto;
-    margin-top: 80px;
     height: calc(100vh - 300px);
     overflow-y: auto;
   }
@@ -682,6 +829,10 @@
 
 .playerContainer {
   position: absolute;
+}
+
+.playerContainer .turn {
+  background: #323200;
 }
 
 .transparent {
@@ -833,7 +984,7 @@
 
 @media only screen and (max-width: 750px) {
   .playerContainer:nth-of-type(2) .info {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 }
 
@@ -949,7 +1100,7 @@
 
 @media only screen and (max-width: 750px) {
   .playerContainer:nth-of-type(3) .info {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 }
 
@@ -1082,10 +1233,6 @@
   }
 }
 
-.active {
-  background: #0a3447;
-}
-
 .player {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1109,7 +1256,6 @@
 
 @media only screen and (max-width: 1000px) {
   .player {
-    width: 135px;
     padding: 10px 10px 10px 25px;
   }
 }
@@ -1164,8 +1310,6 @@
 .player .cards .card {
   height: 49px;
   width: 35px;
-  border: 2px solid #eeeb2b;
-  background-color: #080808;
   border-radius: 5px;
 }
 
@@ -1175,6 +1319,17 @@
     width: 25px;
     margin: 0 3px;
   }
+  .player .cards .card p {
+    font-size: 1.15em;
+    margin-left: 1px;
+    margin-top: -3px;
+  }
+  .player .cards .card .cardImg {
+    width: 16px;
+    height: 16px;
+    bottom: 0px;
+    right: 0px;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -1182,6 +1337,11 @@
     height: 30px;
     width: 21px;
     margin: 0 2px;
+  }
+  .player .cards .card p {
+    font-size: 1em;
+    margin-left: 1px;
+    margin-top: -3px;
   }
 }
 
@@ -1247,8 +1407,16 @@
   }
 }
 
-.player .info .green {
+.player .info .raise {
   color: #4dac2a;
+}
+
+.player .info .call {
+  color: #d4bc1c;
+}
+
+.player .info .fold {
+  color: #db5151;
 }
 
 .player .info .nick {

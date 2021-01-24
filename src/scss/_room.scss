@@ -33,16 +33,58 @@
     background-color: rgb(34, 102, 175);
     border-radius: 50vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .card {
-      border: 2px solid $mainColor;
-      height: 70px;
-      width: 50px;
-      border-radius: 5px;
-      background-color: rgb(8, 8, 8);
-      margin: 0 5px;
+    .tableCards {
+      display: flex;
+      .card {
+        @include breakpoint(750px) {
+          width: 35px;
+          height: 49px;
+        }
+        p {
+          font-size: 1.65em;
+
+          @include breakpoint(750px) {
+            font-size: 1.25em;
+          }
+        }
+        .cardImg {
+          width: 32px;
+          height: 32px;
+
+          @include breakpoint(750px) {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+
+    .tableChips {
+      color: white;
+      text-align: center;
+      font-weight: 800;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -100px;
+      margin-bottom: 25px;
+
+      @include breakpoint(600px) {
+        margin-top: -75px;
+        margin-bottom: 0;
+      }
+
+      p {
+        margin-left: 10px;
+      }
+      .chipImg {
+        width: 32px;
+        height: 32px;
+      }
     }
 
     @include breakpoint(750px) {
@@ -63,6 +105,16 @@
 
     .content {
       position: relative;
+    }
+
+    .waiting {
+      background-color: rgba(50, 50, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 5px;
     }
 
     .folded {
