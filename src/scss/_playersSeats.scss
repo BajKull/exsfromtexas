@@ -1,0 +1,281 @@
+.playerContainer:nth-of-type(1) {
+  bottom: -50px;
+  right: 50%;
+  margin-right: -165px;
+
+  @include breakpoint(1350px) {
+    bottom: -25px;
+    margin-right: -130px;
+  }
+  @include breakpoint(1000px) {
+    margin-right: -110px;
+  }
+  @include breakpoint(750px) {
+    right: 5px;
+    margin-right: 0;
+    top: 10px;
+  }
+
+  .userTokens {
+    top: -60px;
+    left: 50%;
+    margin-left: -40px;
+
+    @include breakpoint(750px) {
+      left: -115px;
+      right: auto;
+      margin-right: 0;
+      margin-left: 0;
+      top: 10px;
+    }
+  }
+}
+
+.playerContainer:nth-of-type(2) {
+  bottom: 35px;
+  left: -150px;
+  right: auto;
+
+  @include breakpoint(1350px) {
+    left: -50px;
+  }
+
+  @include breakpoint(750px) {
+    left: auto;
+    right: 5px;
+    top: 90px;
+  }
+
+  .avatar {
+    left: auto;
+    right: -50px;
+    @include breakpoint(1000px) {
+      right: -25px;
+    }
+    @include breakpoint(750px) {
+      right: auto;
+      left: -25px;
+    }
+  }
+
+  .player {
+    padding: 15px 75px 15px 15px;
+    @include breakpoint(1350px) {
+      padding: 10px 50px 10px 10px;
+    }
+    @include breakpoint(750px) {
+      padding: 10px 10px 10px 50px;
+    }
+  }
+
+  .cards {
+    position: absolute;
+    left: 0;
+    @include breakpoint(1350px) {
+      margin-left: 15px;
+    }
+    @include breakpoint(1000px) {
+      margin-left: 10px;
+    }
+    @include breakpoint(750px) {
+      position: initial;
+      margin-left: 25px;
+    }
+  }
+
+  .info {
+    margin-left: 125px;
+    @include breakpoint(1350px) {
+      margin-left: 85px;
+    }
+    @include breakpoint(1000px) {
+      margin-left: 70px;
+    }
+    @include breakpoint(750px) {
+      margin-left: 15px;
+    }
+  }
+
+  .userTokens {
+    top: -20px;
+    right: -145px;
+
+    @include breakpoint(750px) {
+      left: -90px;
+      right: auto;
+      margin-right: 0;
+      margin-left: 0;
+      top: 10px;
+    }
+  }
+}
+
+.playerContainer:nth-of-type(3) {
+  top: -60px;
+  left: -35px;
+  right: auto;
+
+  @include breakpoint(1350px) {
+    top: 0;
+    left: -50px;
+  }
+  @include breakpoint(750px) {
+    left: auto;
+    right: 5px;
+    top: 170px;
+  }
+
+  .avatar {
+    left: auto;
+    right: -50px;
+
+    @include breakpoint(1000px) {
+      right: -25px;
+    }
+    @include breakpoint(750px) {
+      right: auto;
+      left: -25px;
+    }
+  }
+
+  .player {
+    padding: 15px 75px 15px 15px;
+    @include breakpoint(1350px) {
+      padding: 10px 50px 10px 10px;
+    }
+    @include breakpoint(750px) {
+      padding: 10px 10px 10px 50px;
+    }
+  }
+
+  .cards {
+    position: absolute;
+    left: 0;
+    @include breakpoint(1350px) {
+      margin-left: 15px;
+    }
+    @include breakpoint(1000px) {
+      margin-left: 10px;
+    }
+    @include breakpoint(750px) {
+      position: initial;
+      margin-left: 25px;
+    }
+  }
+
+  .info {
+    margin-left: 125px;
+    @include breakpoint(1350px) {
+      margin-left: 85px;
+    }
+    @include breakpoint(1000px) {
+      margin-left: 70px;
+    }
+    @include breakpoint(750px) {
+      margin-left: 15px;
+    }
+  }
+
+  .userTokens {
+    bottom: -60px;
+    right: -95px;
+
+    @include breakpoint(750px) {
+      left: -90px;
+      right: auto;
+      bottom: auto;
+      margin-right: 0;
+      margin-left: 0;
+      top: 10px;
+    }
+  }
+}
+
+.playerContainer:nth-of-type(4) {
+  top: -115px;
+  right: 50%;
+  margin-right: -165px;
+
+  @include breakpoint(1350px) {
+    top: -50px;
+    margin-right: -130px;
+  }
+  @include breakpoint(1000px) {
+    margin-right: -110px;
+  }
+
+  @include breakpoint(750px) {
+    right: 5px;
+    margin-right: 0;
+    top: 250px;
+  }
+
+  .userTokens {
+    bottom: -80px;
+    left: 50%;
+    margin-left: -40px;
+
+    @include breakpoint(750px) {
+      left: -115px;
+      right: auto;
+      bottom: auto;
+      margin-right: 0;
+      margin-left: 0;
+      top: 10px;
+    }
+  }
+}
+
+.playerContainer:nth-of-type(5) {
+  top: -60px;
+  right: -35px;
+  @include breakpoint(1350px) {
+    top: 0;
+    right: -50px;
+  }
+  @include breakpoint(750px) {
+    right: 5px;
+    top: 330px;
+  }
+
+  .userTokens {
+    bottom: -60px;
+    left: -95px;
+
+    @include breakpoint(750px) {
+      top: 10px;
+      left: -115px;
+      right: auto;
+      bottom: auto;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+.playerContainer:nth-of-type(6) {
+  bottom: 35px;
+  right: -150px;
+
+  @include breakpoint(1350px) {
+    right: -50px;
+  }
+  @include breakpoint(750px) {
+    right: 5px;
+    top: 410px;
+  }
+
+  .userTokens {
+    top: -20px;
+    left: -145px;
+
+    @include breakpoint(750px) {
+      top: 10px;
+      left: -115px;
+      right: auto;
+      bottom: auto;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}

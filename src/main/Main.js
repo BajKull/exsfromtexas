@@ -12,6 +12,7 @@ export default function Main() {
   const [showMenu2, setShowMenu2] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadingSmall, setLoadingSmall] = useState(false);
   const [code, setCode] = useState("");
   const history = useHistory();
   const endpoint = useSelector((state) => state.connection.endpoint);
@@ -44,6 +45,7 @@ export default function Main() {
   };
 
   const createRoom = () => {
+    setLoadingSmall(true);
     fetch(`${endpoint}/api/createRoom`, {
       method: "POST",
     })
@@ -69,7 +71,7 @@ export default function Main() {
 
   return (
     <div className="main">
-      <Loading loading={loading} />
+      <Loading loading={loading} cname="bigLoading" />
       <div>
         <CSSTransition
           timeout={350}
@@ -80,10 +82,9 @@ export default function Main() {
           <div className="content">
             <h2>Texas Hold'em online</h2>
             <h3>
-              Rzuć wyzwanie innym i pokonaj ich w darmowej rozgrywce pokera
-              online.
+              Challenge others and beat them in the free, online poker game.
             </h3>
-            <button onClick={changeMenu}>Graj</button>
+            <button onClick={changeMenu}>Play</button>
           </div>
         </CSSTransition>
         <CSSTransition
@@ -94,10 +95,9 @@ export default function Main() {
         >
           <div className="content">
             <h2>Texas Hold'em online</h2>
-
-            <button onClick={() => createRoom()}>Stwórz grę</button>
-
-            <button onClick={changeJoinMenu}>Dołącz</button>
+            <button onClick={() => createRoom()}>Create game</button>
+            <button onClick={changeJoinMenu}>Join game</button>
+            <Loading loading={loadingSmall} cname="smallLoading" />
           </div>
         </CSSTransition>
         <CSSTransition
@@ -107,10 +107,10 @@ export default function Main() {
           classNames="fadeout"
         >
           <div className="content">
-            <h2>Kod pokoju</h2>
+            <h2>Room code</h2>
             <input value={code} onChange={typeCode} className="globalInput" />
-            <button onClick={joinRoom}>Dołącz</button>
-            <button onClick={changeJoinMenu}>Cofnij</button>
+            <button onClick={joinRoom}>Join</button>
+            <button onClick={changeJoinMenu}>Back</button>
           </div>
         </CSSTransition>
         <div className="background">

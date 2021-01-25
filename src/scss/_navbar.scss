@@ -45,7 +45,7 @@
     top: 24px;
 
     button {
-      display: block;
+      display: flex;
       background: rgb(35, 35, 35);
       color: white;
       border: 0;
@@ -53,9 +53,26 @@
       padding: 10px 25px;
       transition: background-color 0.2s;
 
+      .click {
+        height: 18px;
+        fill: white;
+        margin-left: 5px;
+      }
+
       &:hover {
         background: rgb(50, 50, 50);
       }
     }
+  }
+
+  .clipboard {
+    position: absolute;
+    padding: 25px;
+    background-color: rgb(45, 45, 45);
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    left: 50%;
+    margin-left: -115px;
   }
 }

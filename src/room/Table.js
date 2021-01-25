@@ -13,7 +13,7 @@ export default function Table() {
   return (
     <div className="table">
       <div className="tableChips">
-        <Chips amount={chips - playerBets} />
+        <Chips amount={chips - playerBets || 0} />
       </div>
       <Players />
       <div className="tableCards">

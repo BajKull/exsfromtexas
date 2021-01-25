@@ -9,6 +9,7 @@ export default function UserPanel() {
   const player = useSelector((state) =>
     state.players.find((p) => p.id === userId)
   );
+  const winner = useSelector((state) => state.winner);
   const table = useSelector((state) => state.table);
   const panel = useRef(null);
   const readyBtn = useRef(null);
@@ -74,6 +75,11 @@ export default function UserPanel() {
             <h1>Folded</h1>
           </div>
         )}
+        {winner && player && winner.id === player.id && (
+          <div className="won">
+            <h1>Round won</h1>
+          </div>
+        )}
         {table.status === "lobby" && (
           <>
             {player && player.ready ? (
@@ -91,7 +97,7 @@ export default function UserPanel() {
             )}
           </>
         )}
-        {table.status === "game" && player.active === false && (
+        {table.status === "game" && player && player.active === false && (
           <div className="waiting"></div>
         )}
         <div className="stakes">

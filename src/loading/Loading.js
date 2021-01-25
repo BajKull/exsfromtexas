@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
-export default function Loading({ loading }) {
+export default function Loading({ loading, cname }) {
   const leftCard = useRef(null);
   const rightCard = useRef(null);
 
@@ -13,7 +13,7 @@ export default function Loading({ loading }) {
   }, [loading]);
   return (
     <CSSTransition
-      className="mainLoading"
+      className={cname}
       in={loading}
       timeout={750}
       unmountOnExit

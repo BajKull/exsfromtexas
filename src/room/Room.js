@@ -24,7 +24,6 @@ export default function Room() {
   const userId = useSelector((state) => state.user.id);
   const nickname = useSelector((state) => state.user.name);
   const avId = useSelector((state) => state.user.avatar);
-  const winner = useSelector((state) => state.winner);
 
   useEffect(() => {
     const code = location.pathname.split("/").pop();
@@ -37,6 +36,7 @@ export default function Room() {
     const socket = SockJS(endpoint + "/room/" + roomcode);
     const stomp = Stomp.Stomp;
     const client = stomp.over(socket);
+    client.debug = () => {};
 
     const processMsg = (msg) => {
       const data = JSON.parse(msg.body);
@@ -107,11 +107,11 @@ export default function Room() {
       path={`/room/:id`}
       render={() => (
         <div className="room">
-          <Loading loading={loading} />
+          <Loading loading={loading} cname="bigLoading" />
           {nickname === "unknown" && <NicknameScreen />}
           <Table />
           <UserPanel />
-          <Winner winner={winner} />
+          <Winner />
         </div>
       )}
     />

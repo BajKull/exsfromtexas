@@ -40,7 +40,7 @@ export default function NicknameScreen() {
       <div className="content">
         <Avatar />
         <ChangeAvatar />
-        <label>Twoja nazwa</label>
+        <label>Nickname</label>
         <input
           className="globalInput"
           value={nick}
@@ -48,7 +48,7 @@ export default function NicknameScreen() {
           ref={input}
         />
         <p className="error">{error}</p>
-        <button onClick={checkNick}>Potwierdź</button>
+        <button onClick={checkNick}>Confirm</button>
       </div>
     </div>
   );

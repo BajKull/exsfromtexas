@@ -1,7 +1,9 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import { useSelector } from "react-redux";
 
-export default function Winner({ winner }) {
+export default function Winner() {
+  const winner = useSelector((state) => state.winner);
   return (
     <CSSTransition
       in={winner !== null}
