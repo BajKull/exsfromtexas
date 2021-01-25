@@ -1279,6 +1279,11 @@
   background: #494949;
 }
 
+.userPanel .stakes button:focus {
+  outline: none;
+  background: #494949;
+}
+
 .userPanel .stakes input {
   width: 196px;
   height: 25px;
@@ -1317,6 +1322,11 @@
   background: #e47b7b;
 }
 
+.userPanel .actions .red:focus {
+  outline: none;
+  background: #e47b7b;
+}
+
 .userPanel .actions .yellow {
   background: #d4bc1c;
 }
@@ -1325,11 +1335,21 @@
   background: #e5d03e;
 }
 
+.userPanel .actions .yellow:focus {
+  outline: none;
+  background: #e5d03e;
+}
+
 .userPanel .actions .green {
   background: #4dac2a;
 }
 
 .userPanel .actions .green:hover {
+  background: #62cf3a;
+}
+
+.userPanel .actions .green:focus {
+  outline: none;
   background: #62cf3a;
 }
 

@@ -12,12 +12,12 @@ export default function NicknameScreen() {
 
   const checkNick = () => {
     if (nick.length < 3)
-      setError("Nazwa użytkownika musi zawierać co najmniej 3 znaki.");
+      setError("Nickname must contains at least 3 characters.");
     else if (nick.length > 12)
-      setError("Nazwa użytkownika może zawierać co najmwyżej 12 znaków.");
+      setError("Nickname must be 12 characters at max.");
     else if (/^[a-zA-Z0-9]*$/.test(nick) === false)
-      setError("Nazwa użytkownika nie może zawierać znaków specjalnych.");
-    else if (nick === "unknown") setError("Zmień nazwę użytkownika.");
+      setError("Nickname can't include special symbols.");
+    else if (nick === "unknown") setError("Change nickname.");
     else {
       setError("");
       dispatch(setName(nick));

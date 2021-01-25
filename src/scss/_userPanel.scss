@@ -98,6 +98,10 @@
       &:hover {
         background: lighten(rgb(60, 60, 60), 5);
       }
+      &:focus {
+        outline: none;
+        background: lighten(rgb(60, 60, 60), 5);
+      }
     }
 
     input {
@@ -131,16 +135,28 @@
       &:hover {
         background: lighten($redColor, 10);
       }
+      &:focus {
+        outline: none;
+        background: lighten($redColor, 10);
+      }
     }
     .yellow {
       background: $yellowColor;
       &:hover {
         background: lighten($yellowColor, 10);
       }
+      &:focus {
+        outline: none;
+        background: lighten($yellowColor, 10);
+      }
     }
     .green {
       background: $greenColor;
       &:hover {
+        background: lighten($greenColor, 10);
+      }
+      &:focus {
+        outline: none;
         background: lighten($greenColor, 10);
       }
     }
