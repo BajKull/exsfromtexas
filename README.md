@@ -1,6 +1,7 @@
 # Ex's from Texas
 
 Ex's from Texas is a web app allowing user to play an online game of Tehax Hold'em in real time through web browser.
+[See site live here](https://exsfromtexas.netlify.app/)
 
 ## Functionality
 
@@ -40,7 +41,7 @@ This panel allows user to interact with others. Stakes panel calculates the rais
   - call
   - raise
 
-## `Technology stack`
+## Technology stack
 
 - React
 - Redux
